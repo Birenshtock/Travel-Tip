@@ -47,6 +47,7 @@ function renderLoc(locs) {
         <div>${loc.name}</div>
         <div>${loc.lat}</div>
         <div>${loc.lng}</div>
+        <div>${loc.createdAt}</div>
         
         `
     })

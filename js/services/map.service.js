@@ -17,7 +17,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
-            gMap.addListener("click", (ev) => { panTo(ev.latLng.lat(), ev.latLng.lng()), saveLocation(ev), onGetLocs() })
+            gMap.addListener("click", (ev) => { panTo(ev.latLng.lat(), ev.latLng.lng()), saveLocation(ev) })
             console.log('Map!', gMap);
         })
 }
