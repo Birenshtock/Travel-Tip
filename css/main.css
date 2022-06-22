@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(255, 179, 0);
+}
+
+
+/* .map-container {
+    width: 80%;
+    height: 30%;
+} */
+
+.header-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

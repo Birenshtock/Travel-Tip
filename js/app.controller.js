@@ -8,6 +8,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 
 function onInit() {
+    onGetLocs()
     console.log('adi is testing');
     mapService.initMap()
         .then(() => {
@@ -29,11 +30,15 @@ function onAddMarker() {
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
 }
 onGetLocs()
+
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
             console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs)
+            var strHTML = locs.map(loc => {
+                return `<div>${loc.name}</div>`
+            })
+            document.querySelector('.location-list').innerHTML = strHTML.join('')
         })
 }
 
@@ -54,6 +59,6 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917);
 }
 
-function onSaveLoc(name,id) {
+function onSaveLoc(name, id) {
 
 }

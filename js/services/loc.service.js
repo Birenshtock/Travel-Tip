@@ -5,7 +5,7 @@ export const locService = {
 
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
@@ -17,26 +17,32 @@ function getLocs() {
     });
 }
 
-function getCityByCoords(lat,lng) {
-    console.log('lat, lng',lat, lng)
+function getCityByCoords(lat, lng) {
+    console.log('lat, lng', lat, lng)
 }
 
-function _saveLoc(name, lat,lng,updatedAt ) {
+function _saveLoc(name, lat, lng, updatedAt) {
     return {
         id: _makeId(),
-        name, 
+        name,
         lat,
-         lng, 
-         createdAt, 
-         updatedAt}
-}
- 
-function _makeId(length = 6) {
-    // const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    const possible = '0123456789'
-    var txt = ''
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+        lng,
+        createdAt,
+        updatedAt
     }
-    return txt
+}
+
+function getGeoLocInfo(placeId) {
+    if (window.google) return Promise.resolve()
+    const API_KEY = 'AIzaSyCz94MTPax3HBc_be3l_LOjwbB8oS0tB48'
+    var elGoogleApi = document.createElement('script');
+    elGoogleApi.src = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}
+    &key=${API_KEY}`;
+    elGoogleApi.async = true;
+    document.body.append(elGoogleApi);
+
+    return new Promise((resolve, reject) => {
+        elGoogleApi.onload = resolve;
+        elGoogleApi.onerror = () => reject('Google script failed to load')
+    })
 }
