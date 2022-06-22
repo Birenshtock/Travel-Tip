@@ -23,6 +23,7 @@ function getPosition() {
     console.log('Getting Pos');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
+
     })
 }
 
@@ -39,9 +40,15 @@ function onGetLocs() {
         })
 }
 
-function renderLoc(locs){
+function renderLoc(locs) {
     var strHTML = locs.map(loc => {
-        return `<div>${loc.name}</div>`
+        return `
+        <div>${loc.id}</div>
+        <div>${loc.name}</div>
+        <div>${loc.lat}</div>
+        <div>${loc.lng}</div>
+        
+        `
     })
     document.querySelector('.location-list').innerHTML = strHTML.join('')
 }
@@ -63,6 +70,7 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917);
 }
 onSaveLoc()
+
 function onSaveLoc() {
 
 }

@@ -14,10 +14,10 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
-            gMap.addListener("click", (ev) => { panTo(ev.latLng.lat(), ev.latLng.lng()), saveLocation(ev) })
+                center: { lat, lng },
+                zoom: 15
+            })
+            gMap.addListener("click", (ev) => { panTo(ev.latLng.lat(), ev.latLng.lng()), saveLocation(ev), onGetLocs() })
             console.log('Map!', gMap);
         })
 }
