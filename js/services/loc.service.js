@@ -4,8 +4,8 @@ export const locService = {
     getLocs,
     getCityByCoords,
     showLocation,
-    handleLocationError
-
+    handleLocationError,
+    deleteLoc,
 }
 
 const STORAGE_KEY = 'locsDB'
@@ -20,6 +20,15 @@ function getLocs() {
     });
 }
 
+function getLocById(id) {
+    const loc = gLocs.findIndex((loc) => id === loc.id)
+}
+
+function deleteLoc(id) {
+    const locIndex = getLocById(id)
+    gLocs.splice(locIndex,1)
+    locStorage.saveToStorage(STORAGE_KEY, gLocs)
+}
 
 function getCityByCoords(lat, lng, name) {
     console.log('lat, lng', lat, lng)

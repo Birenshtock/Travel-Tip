@@ -5,6 +5,7 @@ import { locStorage } from './services/locStorage.service.js'
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
+window.onDeleteLoc = onDeleteLoc
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 
@@ -46,12 +47,19 @@ function onGetLocs() {
 function renderLoc(locs) {
     var strHTML = locs.map(loc => {
         return `
-        <div> ${loc.id}</div>
-        <div>${loc.name}</div>
-        <div>${loc.createdAt}</div>
+        <div>
+        Location name: ${loc.name}, created at: ${loc.createdAt}
+        <button onclick="onPanTo(${loc.lat},${loc.lng})">GO</button>
+        <button onclick="onDeleteLoc(${loc.id})">DELETE</button>
+        </div>
         `
     })
     document.querySelector('.location-list').innerHTML = strHTML.join('')
+}
+
+function onDeleteLoc(locId) {
+    locService.deleteLoc(locId)
+    onGetLocs()
 }
 
 function onGetUserPos() {
@@ -66,9 +74,9 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo() {
+function onPanTo(lat, lng) {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(lat, lng);
 }
 
 
