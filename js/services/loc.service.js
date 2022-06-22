@@ -17,18 +17,19 @@ function getLocs() {
     });
 }
 
-function getCityByCoords(lat, lng) {
+function getCityByCoords(lat, lng, name) {
     console.log('lat, lng', lat, lng)
+    var newLoc = _saveLoc(name, lat, lng)
+    console.log(newLoc)
 }
 
-function _saveLoc(name, lat, lng, updatedAt) {
+function _saveLoc(name, lat, lng) {
     return {
         id: _makeId(),
         name,
         lat,
         lng,
-        createdAt,
-        updatedAt
+        createdAt: Date.now()
     }
 }
 

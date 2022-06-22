@@ -15,3 +15,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.location-table {
+    background-color: antiquewhite;
+}

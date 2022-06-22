@@ -37,7 +37,8 @@ function panTo(lat, lng) {
 }
 
 function saveLocation(ev) {
-    locService.getCityByCoords(ev.latLng.lat(), ev.latLng.lng())
+    var locName = prompt('Enter Location Name')
+    locService.getCityByCoords(ev.latLng.lat(), ev.latLng.lng(), locName)
 }
 
 function _connectGoogleApi() {
