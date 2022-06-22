@@ -19,3 +19,7 @@ body {
 .location-table {
     background-color: antiquewhite;
 }
+
+.location-list {
+    display: flex;
+}
