@@ -1,5 +1,4 @@
 
-
 export const mapService = {
     initMap,
     addMarker,
@@ -18,6 +17,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
+            gMap.addListener("click", (ev) => { panTo(ev.latLng.lat(), ev.latLng.lng())})
             console.log('Map!', gMap);
         })
 }
@@ -35,7 +35,6 @@ function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
 }
-
 
 
 function _connectGoogleApi() {
