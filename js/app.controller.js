@@ -1,5 +1,6 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+import { locStorage } from './services/locStorage.service.js'
 
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
@@ -13,7 +14,6 @@ function onInit() {
     mapService.initMap()
         .then(() => {
             console.log('Map is ready');
-            onGetLocs()
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -43,12 +43,8 @@ function onGetLocs() {
 function renderLoc(locs) {
     var strHTML = locs.map(loc => {
         return `
-        <div>${loc.id}</div>
         <div>${loc.name}</div>
-        <div>${loc.lat}</div>
-        <div>${loc.lng}</div>
         <div>${loc.createdAt}</div>
-        
         `
     })
     document.querySelector('.location-list').innerHTML = strHTML.join('')
