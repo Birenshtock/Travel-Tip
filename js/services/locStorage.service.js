@@ -1,4 +1,4 @@
-export const localStorage = {
+export const locStorage = {
     saveToStorage,
     loadFromStorage
 }

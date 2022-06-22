@@ -1,3 +1,5 @@
+import { locStorage } from './locStorage.service.js'
+import { utilService } from './utils.service.js'
 export const locService = {
     getLocs,
     getCityByCoords,
@@ -6,6 +8,7 @@ export const locService = {
 
 }
 
+const STORAGE_KEY = 'locsDB'
 
 let gLocs = []
 
@@ -17,43 +20,24 @@ function getLocs() {
     });
 }
 
+
 function getCityByCoords(lat, lng, name) {
     console.log('lat, lng', lat, lng)
     var newLoc = _saveLoc(name, lat, lng)
     gLocs.push(newLoc)
+    locStorage.saveToStorage(STORAGE_KEY, gLocs)
     console.log('gLocs', gLocs)
     console.log(newLoc)
 }
 
-function _getDate() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    return today = mm + '/' + dd + '/' + yyyy;
-}
-
-
-
 function _saveLoc(name, lat, lng) {
     return {
-        id: _makeId(),
+        id: utilService.makeId(),
         name,
         lat,
         lng,
-        createdAt: _getDate()
+        createdAt: utilService.getDate(),
     }
-}
-
-function _makeId(length = 6) {
-    // const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    const possible = '0123456789'
-    var txt = ''
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
-    return txt
 }
 
 
